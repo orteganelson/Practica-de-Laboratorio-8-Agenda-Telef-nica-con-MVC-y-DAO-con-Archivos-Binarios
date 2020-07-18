@@ -5,10 +5,27 @@
  */
 package ec.edu.ups.idao;
 
+import java.util.Map;
+import ec.edu.ups.modelo.Usuario;
 /**
  *
  * @author Anahi
  */
-public class IUsuarioDao {
+public interface IUsuarioDao {
     
+    public void create(Usuario usuario);
+
+    public Usuario read(String cedula);
+    
+    public Usuario readCorreo(String correo);
+
+    public void update(Usuario usuario);
+
+    public void delete(Usuario usuario);
+
+    public Usuario iniciarSesion(String correo, String contraseña);
+
+    public Map<String, Usuario> findAll();
+    
+    public String llenarEspacios(int espacios);
 }
