@@ -30,6 +30,7 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
         this.controladorUsuario = controladorUsuario;
         DatosOperadora();
         botonesInicio();
+        this.setTitle("Gestión Teléfono");
     }
     public void botonesInicio() {
 
@@ -141,8 +142,6 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestión Teléfonos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
-
         jLabel1.setText("Código:");
 
         jLabel2.setText("Tipo:");
@@ -239,7 +238,7 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
                                             .addComponent(txtNum))
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 15, Short.MAX_VALUE)
+                                .addGap(0, 27, Short.MAX_VALUE)
                                 .addComponent(btnAgregar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnEditar)
@@ -277,7 +276,7 @@ public class GestionTelefono extends javax.swing.JInternalFrame {
                     .addComponent(btnCancelar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

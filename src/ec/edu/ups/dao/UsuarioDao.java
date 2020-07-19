@@ -108,7 +108,6 @@ public class UsuarioDao implements IUsuarioDao{
                 archivo.seek(salto);
                 String cedulaArchivo = archivo.readUTF().trim();
                 if (cedula.trim().equals(cedulaArchivo)) {
-                    //archivo.writeUTF(cliente.getCedula());
                     archivo.writeUTF(cliente.getNombre());
                     archivo.writeUTF(cliente.getApellido());
                     archivo.writeUTF(cliente.getCorreo());
@@ -152,7 +151,7 @@ public class UsuarioDao implements IUsuarioDao{
     }
     @Override
     public Usuario iniciarSesion(String correo, String contraseña) {
-        System.out.println("hola");
+        
         try {
             int salto = 66;
 
@@ -161,7 +160,7 @@ public class UsuarioDao implements IUsuarioDao{
 
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-
+                
                 String correoArchivo = archivo.readUTF();
                 String contraseñaArchivo = archivo.readUTF();
 
@@ -169,9 +168,10 @@ public class UsuarioDao implements IUsuarioDao{
                 System.out.println(contraseñaArchivo);
 
                 System.out.println(correo + " " + contraseña);
-
+                System.out.println(correoArchivo);
+                System.out.println(contraseñaArchivo);
                 if (correo.equals(correoArchivo.trim()) && contraseña.equals(contraseñaArchivo.trim())) {
-
+                    
                     archivo.seek(salto - 66);
                     usuario = new Usuario(archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim(), correoArchivo, contraseñaArchivo);
@@ -183,8 +183,6 @@ public class UsuarioDao implements IUsuarioDao{
         } catch (IOException ex) {
             System.out.println("Error escritura o lectura (iniciar sesion) ");
         }
-        System.out.println("hola");
-
         return null;
     }
     @Override

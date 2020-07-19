@@ -73,8 +73,6 @@ public class GestionUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestión Usuarios", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
-
         jLabel1.setText("Nombre:");
 
         jLabel2.setText("Apellido:");
@@ -134,7 +132,7 @@ public class GestionUsuario extends javax.swing.JInternalFrame {
                         .addComponent(btnActualizar)
                         .addGap(31, 31, 31)
                         .addComponent(btnCancelar)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +161,7 @@ public class GestionUsuario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnCancelar))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

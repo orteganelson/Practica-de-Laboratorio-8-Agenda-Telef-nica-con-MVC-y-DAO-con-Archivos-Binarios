@@ -28,6 +28,7 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
         initComponents();
         this.controladorUsuario= controladorUsuario;
         telefonos = new ArrayList<>();
+        this.setTitle("Buscar Usuario");
     }
     public void llenarTablaTelefonos(List<Telefono> teles) {
         DefaultTableModel modelo = (DefaultTableModel) tablaBuscar.getModel();
@@ -73,8 +74,6 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
         txtCorreo = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
 
         comboOpcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -159,7 +158,7 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
                             .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())

@@ -41,13 +41,6 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="2" position="2" title="Gesti&#xf3;n Tel&#xe9;fonos"/>
-          </Border>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -78,7 +71,7 @@
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="0" pref="15" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
                                   <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
@@ -127,7 +120,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="108" max="-2" attributes="0"/>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

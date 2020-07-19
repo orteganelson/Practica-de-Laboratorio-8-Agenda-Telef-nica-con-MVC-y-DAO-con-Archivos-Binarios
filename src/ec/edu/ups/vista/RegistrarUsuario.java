@@ -55,8 +55,6 @@ public class RegistrarUsuario extends javax.swing.JInternalFrame {
         txtCorreo = new javax.swing.JTextField();
         txtContra = new javax.swing.JPasswordField();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resgistro Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
-
         jLabel1.setText("Nombre:");
 
         jLabel2.setText("Apellido:");
@@ -107,7 +105,7 @@ public class RegistrarUsuario extends javax.swing.JInternalFrame {
                         .addComponent(btnRegistrar)
                         .addGap(60, 60, 60)
                         .addComponent(btnCancelar)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
