@@ -60,8 +60,6 @@ public class IniciarSesion extends javax.swing.JInternalFrame {
         btnIniciar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Iniciar sesión", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
-
         jLabel1.setText("Correo Electrónico:");
 
         jLabel2.setText("Contraseña:");
@@ -117,7 +115,7 @@ public class IniciarSesion extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIniciar)
                     .addComponent(btnCancelar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

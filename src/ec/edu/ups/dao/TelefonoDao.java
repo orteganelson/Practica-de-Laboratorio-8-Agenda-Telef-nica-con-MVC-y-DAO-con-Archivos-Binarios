@@ -27,10 +27,9 @@ public class TelefonoDao implements ITelefonoDao {
         codigo = 0;
         tamañoRegistro = 92;
         try {
-            
             archivo = new RandomAccessFile("datos/telefono.dat", "rw");
         } catch (IOException ex) {
-            System.out.println("error de escritura y lectura(teelfonoDAO)");
+            System.out.println("error de escritura y lectura(telefonoDAO)");
             ex.printStackTrace();
         }
     }

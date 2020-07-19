@@ -20,7 +20,7 @@ import java.util.Map;
  * @author Anahi
  */
 public class UsuarioDao implements IUsuarioDao{
-     private RandomAccessFile archivo;
+    private RandomAccessFile archivo;
     private Usuario usuario;
     private int registro;
 
@@ -152,6 +152,7 @@ public class UsuarioDao implements IUsuarioDao{
     }
     @Override
     public Usuario iniciarSesion(String correo, String contraseña) {
+        System.out.println("hola");
         try {
             int salto = 66;
 
@@ -180,8 +181,9 @@ public class UsuarioDao implements IUsuarioDao{
             }
 
         } catch (IOException ex) {
-            System.out.println("Error escritu o lectura (iniciar sesion) ");
+            System.out.println("Error escritura o lectura (iniciar sesion) ");
         }
+        System.out.println("hola");
 
         return null;
     }

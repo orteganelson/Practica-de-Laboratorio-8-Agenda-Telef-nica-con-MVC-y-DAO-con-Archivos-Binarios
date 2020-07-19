@@ -5,17 +5,47 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.modelo.Telefono;
+import ec.edu.ups.modelo.Usuario;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Anahi
  */
 public class BuscarUsuario extends javax.swing.JInternalFrame {
-
+    private ControladorUsuario controladorUsuario;
+    private List<Telefono> telefonos;
     /**
      * Creates new form BuscarUsuario
      */
-    public BuscarUsuario() {
+    public BuscarUsuario(ControladorUsuario controladorUsuario) {
         initComponents();
+        this.controladorUsuario= controladorUsuario;
+        telefonos = new ArrayList<>();
+    }
+    public void llenarTablaTelefonos(List<Telefono> teles) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaBuscar.getModel();
+        modelo.setRowCount(0);
+        for (Telefono telefono : teles) {
+            Object[] tele = {telefono.getCodigo(), telefono.getNumero(),
+                telefono.getOperadora(), telefono.getTipo()};
+            modelo.addRow(tele);
+        }
+        tablaBuscar.setModel(modelo);
+    }
+
+    public void limpiar() {
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtCorreo.setText("");
+        txtCombo.setText("");
     }
 
     /**
@@ -28,7 +58,7 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboOpcion = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -37,7 +67,7 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
         btnListar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaBuscar = new javax.swing.JTable();
         txtCombo = new javax.swing.JTextField();
         txtCedula = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
@@ -46,7 +76,7 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboOpcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Cédula:");
 
@@ -57,12 +87,22 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
         jLabel4.setText("Apellido:");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaBuscar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -81,7 +121,7 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaBuscar);
 
         txtCedula.setEditable(false);
 
@@ -100,7 +140,7 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnBuscar)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)
                         .addComponent(jLabel2)
                         .addComponent(jLabel3)
@@ -129,7 +169,7 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -174,19 +214,78 @@ public class BuscarUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String id = (String) txtCombo.getText();
+
+        if (id == null) {
+            JOptionPane.showMessageDialog(this, "Obligatorio llenar el campo requerido");
+        } else {
+            String opcion = comboOpcion.getSelectedItem().toString();
+            if (opcion.equals("Cédula")) {
+
+                Usuario u = controladorUsuario.buscar(id);
+                if (u != null) {
+                    txtCedula.setText(u.getCedula());
+                    txtNombre.setText(u.getNombre());
+                    txtApellido.setText(u.getApellido());
+                    txtCorreo.setText(u.getCorreo().trim());
+
+                    List<Telefono> telefonosUsuario = new ArrayList<>();
+                    telefonosUsuario = controladorUsuario.listarTelefonosVentana(u.getCedula());
+                    if (telefonosUsuario.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Usted no tiene ningún teléfono creado");
+                    } else {
+                        llenarTablaTelefonos(telefonosUsuario);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+                }
+
+            } else {
+                Usuario u = controladorUsuario.buscarCorreo(id);
+                if (u != null) {
+                    txtCedula.setText(u.getCedula());
+                    txtNombre.setText(u.getNombre());
+                    txtApellido.setText(u.getApellido());
+                    txtCorreo.setText(u.getCorreo().trim());
+
+                    List<Telefono> telefonosUsuario = new ArrayList<>();
+                    telefonosUsuario = controladorUsuario.listarTelefonosVentana(u.getCedula());
+                    if (telefonosUsuario.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Usted no tiene ningún teléfono creado");
+                    } else {
+                        llenarTablaTelefonos(telefonosUsuario);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+                }
+            }
+
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        limpiar();
+
+        List<Telefono> telefonosDao = new ArrayList<>();
+        telefonosDao = controladorUsuario.listarTodos();
+
+        llenarTablaTelefonos(telefonosDao);
+    }//GEN-LAST:event_btnListarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnListar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboOpcion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaBuscar;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCombo;

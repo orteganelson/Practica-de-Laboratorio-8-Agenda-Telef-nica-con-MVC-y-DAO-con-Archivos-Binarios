@@ -60,8 +60,6 @@ public class ControladorUsuario {
 
     public Usuario iniciarSesion(String correo, String password) {
 
-        //se obtienen los datos de contraseÃ±a y correo
-        //se envian los datos y se recibe una persona
         usuario = usuarioDAO.iniciarSesion(correo, password);
         return usuario;
     }
@@ -98,10 +96,6 @@ public class ControladorUsuario {
     public void imprimirUsuarios() {
         Map<String, Usuario> usuarios;
         usuarios = usuarioDAO.findAll();
-
-        /*for (Map.Entry<String, Usuario> usu : usuarios.entrySet()) {
-            System.out.println("uuu\n" + usu.toString());
-        }*/
     }
 
     public Usuario buscar(String id) {
@@ -129,27 +123,18 @@ public class ControladorUsuario {
         telefono = new Telefono(codigo, numero, tipo, operadora);
         telefono.setUsuario(usuario);
         telefonoDAO.create(telefono);
-
-        /*telefonoDAO.create(telefono);
-         usuario.agregarTelefono(telefono);
-        usuarioDAO.update(usuario);
-        System.out.println(usuario.getListaTelefonos());*/
     }
 
     public void actualizarTelefono(String numero, String tipo, String operadora, int codigo) {
 
         telefono = new Telefono(codigo, numero, tipo, operadora);
         telefonoDAO.update(telefono);
-        //usuario.actualizarTelefono(telefono);
-        //usuarioDAO.update(usuario);
-        //System.out.println("\neditar\n" + usuario.getListaTelefonos());
 
     }
 
     public String buscarTelefono(int codigo) {
         telefono = telefonoDAO.read(codigo);
         if (telefono != null) {
-            //usuario.buscar(telefono);
             return telefono.toString();
         } else {
             return "";
@@ -158,9 +143,6 @@ public class ControladorUsuario {
     }
 
     public void eliminarTelefono(int codigo) {
-
-        //telefono = telefonoDAO.read(codigo);
-        //usuario.eliminarTelefono(telefono);
         telefonoDAO.delete(codigo);
 
     }
@@ -181,7 +163,7 @@ public class ControladorUsuario {
     }
 
     public int codigoTelefono() {
-        int conta = telefonoDAO.codigoTelefono();
-        return (++conta);
+        int cont = telefonoDAO.codigoTelefono();
+        return (++cont);
     }
 }
