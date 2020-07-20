@@ -34,8 +34,6 @@ public class UsuarioDao implements IUsuarioDao{
             ex.printStackTrace();
         }
     }
-
-    //mandar un usuario a la base de datos
     @Override
     public void create(Usuario cliente) {
         try {
@@ -50,8 +48,6 @@ public class UsuarioDao implements IUsuarioDao{
             ex.printStackTrace();
         }
     }
-
-    //para buscar un usuario
     @Override
     public Usuario read(String cedula) {
         int salto = 0;
@@ -112,7 +108,6 @@ public class UsuarioDao implements IUsuarioDao{
                 archivo.seek(salto);
                 String cedulaArchivo = archivo.readUTF().trim();
                 if (cedula.trim().equals(cedulaArchivo)) {
-                    //archivo.writeUTF(cliente.getCedula());
                     archivo.writeUTF(cliente.getNombre());
                     archivo.writeUTF(cliente.getApellido());
                     archivo.writeUTF(cliente.getCorreo());
