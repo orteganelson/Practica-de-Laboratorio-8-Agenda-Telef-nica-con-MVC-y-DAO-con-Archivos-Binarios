@@ -27,13 +27,15 @@ public class UsuarioDao implements IUsuarioDao{
     public UsuarioDao() {
         registro = 128;
         try {
+            //archivo = new RandomAccessFile("C:\\Users\\Adolfo\\Desktop\\POO\\InterfazGraficaconArchivosBinarios\\datos\\usuario.dat", "rw");
             archivo = new RandomAccessFile("datos/usuario.dat", "rw");
         } catch (IOException ex) {
             System.out.println("error de escritura y lectura");
             ex.printStackTrace();
         }
     }
-    
+
+    //mandar un usuario a la base de datos
     @Override
     public void create(Usuario cliente) {
         try {
@@ -48,6 +50,8 @@ public class UsuarioDao implements IUsuarioDao{
             ex.printStackTrace();
         }
     }
+
+    //para buscar un usuario
     @Override
     public Usuario read(String cedula) {
         int salto = 0;
@@ -98,6 +102,8 @@ public class UsuarioDao implements IUsuarioDao{
         }
         return null;
     }
+
+//para actualizar un usuario ya creado
     @Override
     public void update(Usuario cliente) {
 
@@ -108,6 +114,7 @@ public class UsuarioDao implements IUsuarioDao{
                 archivo.seek(salto);
                 String cedulaArchivo = archivo.readUTF().trim();
                 if (cedula.trim().equals(cedulaArchivo)) {
+                    //archivo.writeUTF(cliente.getCedula());
                     archivo.writeUTF(cliente.getNombre());
                     archivo.writeUTF(cliente.getApellido());
                     archivo.writeUTF(cliente.getCorreo());
@@ -121,6 +128,8 @@ public class UsuarioDao implements IUsuarioDao{
         }
 
     }
+
+    //para eliminar un usuario
     @Override
     public void delete(Usuario cliente) {
         try {
@@ -149,18 +158,22 @@ public class UsuarioDao implements IUsuarioDao{
         String aux = "";
         return String.format("%-" + espacios + "s", aux);
     }
+
+    //para iniciar sesion en la cuenta del usuario
     @Override
     public Usuario iniciarSesion(String correo, String contraseña) {
-        
+        // boolean saber = false;
         try {
             int salto = 66;
 
             byte[] correoArreglo = new byte[50];
             byte[] contraseñaArreglo = new byte[8];
+            /* FileReader aux = new FileReader("C:\\Users\\Adolfo\\Desktop\\POO\\InterfazGraficaconArchivosBinarios\\datos\\usuario.dat");
+            BufferedReader archivoLectura = new BufferedReader(aux);      */
 
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                
+
                 String correoArchivo = archivo.readUTF();
                 String contraseñaArchivo = archivo.readUTF();
 
@@ -168,10 +181,9 @@ public class UsuarioDao implements IUsuarioDao{
                 System.out.println(contraseñaArchivo);
 
                 System.out.println(correo + " " + contraseña);
-                System.out.println(correoArchivo);
-                System.out.println(contraseñaArchivo);
+
                 if (correo.equals(correoArchivo.trim()) && contraseña.equals(contraseñaArchivo.trim())) {
-                    
+
                     archivo.seek(salto - 66);
                     usuario = new Usuario(archivo.readUTF().trim(), archivo.readUTF().trim(),
                             archivo.readUTF().trim(), correoArchivo, contraseñaArchivo);
@@ -181,10 +193,13 @@ public class UsuarioDao implements IUsuarioDao{
             }
 
         } catch (IOException ex) {
-            System.out.println("Error escritura o lectura (iniciar sesion) ");
+            System.out.println("Error escritu o lectura (iniciar sesion) ");
         }
+
         return null;
     }
+
+    //devuelve todos los usuarios
     @Override
     public Map<String, Usuario> findAll() {
         return null;
